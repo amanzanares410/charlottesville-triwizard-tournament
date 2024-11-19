@@ -15,10 +15,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float initialGravityValue = -9.81f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask turnLayer;
+    [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private AnimationClip slideAnimationClip;
     [SerializeField] private Animator animator;
+    [SerializeField] private float scoreMultiplier = 10f;
 
-    private float playerSpeed;
+    [SerializeField] private float playerSpeed;
     private float gravity;
     private Vector3 movementDirection = Vector3.forward;
     private Vector3 playerVelocity;
@@ -30,10 +32,15 @@ public class PlayerController : MonoBehaviour
     private bool sliding = false;
     private CharacterController controller;
 
+    private float score = 0;
 
     private int slidingAnimationId;
 
     [SerializeField] private UnityEvent<Vector3> turnEvent;
+
+    [SerializeField] private UnityEvent<int> gameOverEvent;
+    [SerializeField] private UnityEvent<int> scoreUpdateEvent;
+
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
@@ -66,6 +73,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerTurn(InputAction.CallbackContext context) {
         Vector3? turnPosition = CheckTurn(context.ReadValue<float>());
         if (!turnPosition.HasValue) {
+            GameOver();
             return;
         }
         Vector3 targetDirection = Quaternion.AngleAxis(90 * context.ReadValue<float>(), Vector3.up) * movementDirection;
@@ -111,7 +119,7 @@ public class PlayerController : MonoBehaviour
         sliding = true;
         Vector3 originalControllerCenter = controller.center;
         Vector3 newControllerCenter = originalControllerCenter;
-        sliding = true;
+
         controller.height /= 2;
         newControllerCenter.y -= controller.height / 2;
         controller.center = newControllerCenter;
@@ -134,6 +142,16 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
+        if (!IsGrounded(20f))
+        {
+            GameOver();
+            return;
+        }
+
+            //Update
+            score += scoreMultiplier * Time.deltaTime;
+            scoreUpdateEvent.Invoke((int)score);
+
         controller.Move(transform.forward * playerSpeed * Time.deltaTime);
 
         if (IsGrounded() && playerVelocity.y < 0){
@@ -143,6 +161,17 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+            if (playerSpeed < maximumPlayerSpeed)
+            {
+                playerSpeed += Time.deltaTime * playerSpeedIncrease;
+                gravity = initialGravityValue - playerSpeed;
+
+                if (animator.speed < 1.25f)
+                {
+                    animator.speed += (1 / playerSpeed) * Time.deltaTime;
+                }
+            }
     }
 
     private bool IsGrounded(float length = .2f){
@@ -165,5 +194,21 @@ public class PlayerController : MonoBehaviour
         return false;
 
     }
-}
+
+        private void GameOver()
+        {
+            Debug.Log("Game Over");
+            gameOverEvent.Invoke((int)score);
+            gameObject.SetActive(false);
+
+        }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0)
+            {
+                GameOver();
+            }
+        }
+    }
 }

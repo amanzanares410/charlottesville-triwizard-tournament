@@ -100,7 +100,7 @@ public class TileSpawner : MonoBehaviour
 
     // If the spawn obstacle is true in SpawnTile function, spawns an obstacle 20% of the time
     private void SpawnObstacle() {
-        if (Random.value > .2f) return;
+        if (Random.value > .4f) return;
 
         GameObject obstaclePrefab = SelectRandomGameObjectFromList(obstacles);
         Quaternion newObjectRotation = obstaclePrefab.gameObject.transform.rotation * Quaternion.LookRotation(currentTileDirection, Vector3.up);
