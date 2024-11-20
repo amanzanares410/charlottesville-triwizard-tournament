@@ -568,7 +568,7 @@ Transform:
   m_GameObject: {fileID: 880800065}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1062,10 +1062,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba68ffd1ec8411598d77e1c3c282d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPlayerSpeed: 4
+  initialPlayerSpeed: 10
   maximumPlayerSpeed: 30
   playerSpeedIncrease: 0.1
-  jumpHeight: 1
+  jumpHeight: 1.3
   initialGravityValue: -9.81
   groundLayer:
     serializedVersion: 2
@@ -1255,7 +1255,6 @@ MonoBehaviour:
   turnTiles:
   - {fileID: 3504972824814534260, guid: 57a0c77d40fb7f64f88c73e669bd75d0, type: 3}
   - {fileID: 3109650500946958552, guid: d1bc38dd49605864690bd11be3a4da2a, type: 3}
-  - {fileID: 7270030239991754380, guid: 50a7756a8e2f0f14787d70ef66f51488, type: 3}
   obstacles:
   - {fileID: 7602181854675208719, guid: 155f450bb33de2c4f96d377dba80b194, type: 3}
   - {fileID: 1887772381221813489, guid: 7acef6c3f1b5d6f45b162045d394132f, type: 3}
@@ -1351,7 +1350,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: 0.5}
-  m_LocalScale: {x: -0.78, y: -0.2, z: 0.4}
+  m_LocalScale: {x: 0.78, y: 0.2, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 880800070}

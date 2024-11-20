@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerTurn(InputAction.CallbackContext context) {
         Vector3? turnPosition = CheckTurn(context.ReadValue<float>());
         if (!turnPosition.HasValue) {
+            
             GameOver();
             return;
         }
@@ -124,7 +125,7 @@ public class PlayerController : MonoBehaviour
         newControllerCenter.y -= controller.height / 2;
         controller.center = newControllerCenter;
         // Play the sliding animation
-        animator.Play(slidingAnimationId);
+        animator.Play("slidingAnimation", 0);
         yield return new WaitForSeconds(slideAnimationClip.length / animator.speed);
         // Set the character controller collider back to normal after sliding.
         controller.height *= 2;
@@ -140,6 +141,15 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    // private void PlayerFalls(InputAction.CallbackContext context, float slideInput) {
+    //     if (IsGrounded())
+    //     {
+    //         // Create a velocity vector for sliding along the x-axis
+    //         Vector3 slideVelocity = new Vector3(slideInput, 0, 0);
+    //         controller.Move(slideVelocity * Time.deltaTime);
+    //     }
+    // }
 
     private void Update() {
         if (!IsGrounded(20f))
