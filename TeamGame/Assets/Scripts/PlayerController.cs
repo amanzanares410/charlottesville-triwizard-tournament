@@ -26,10 +26,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
 
     private PlayerInput playerInput;
-    private InputAction turnAction;
     private InputAction jumpAction;
     private InputAction slideAction;
     private bool sliding = false;
+    private bool hasTurned = false;
     private CharacterController controller;
 
     private float score = 0;
@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
         slidingAnimationId = Animator.StringToHash("Sliding");
-        turnAction = playerInput.actions["Turn"];
         jumpAction = playerInput.actions["Jump"];
         slideAction = playerInput.actions["Slide"];
 
@@ -53,14 +52,12 @@ public class PlayerController : MonoBehaviour
 
     // Listen for player input
     private void OnEnable() {
-        turnAction.performed += PlayerTurn;
         slideAction.performed += PlayerSlide;
         jumpAction.performed += PlayerJump;
     }
 
     // Stop listening for player input
     private void OnDisable() {
-        turnAction.performed -= PlayerTurn;
         slideAction.performed -= PlayerSlide;
         jumpAction.performed -= PlayerJump;
     }
@@ -70,33 +67,29 @@ public class PlayerController : MonoBehaviour
         gravity = initialGravityValue;
     }
 
-    private void PlayerTurn(InputAction.CallbackContext context) {
-        Vector3? turnPosition = CheckTurn(context.ReadValue<float>());
-        if (!turnPosition.HasValue) {
-            
-            GameOver();
-            return;
-        }
-        Vector3 targetDirection = Quaternion.AngleAxis(90 * context.ReadValue<float>(), Vector3.up) * movementDirection;
-        turnEvent.Invoke(targetDirection);
-        Turn(context.ReadValue<float>(), turnPosition.Value);
-
-    }
-
-    private Vector3? CheckTurn(float turnValue){
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, .1f, turnLayer);
-        if(hitColliders.Length !=0){
-            Tile tile = hitColliders[0].transform.parent.GetComponent<Tile>();
-            TileType type = tile.type;
-            if ((type == TileType.LEFT && turnValue == -1) ||
-                (type == TileType.RIGHT && turnValue == 1) || 
-                (type == TileType.SIDEWAYS)) {
-                return tile.pivot.position;
+        private (float?, Vector3?) CheckTurn()
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, .1f, turnLayer);
+            if (hitColliders.Length != 0)
+            {
+                Tile tile = hitColliders[0].transform.parent.GetComponent<Tile>();
+                TileType type = tile.type;
+                if (type == TileType.LEFT)
+                {
+                    return (-1, tile.pivot.position);
+                }
+                else if (type == TileType.RIGHT)
+                {
+                    return (1, tile.pivot.position);
+                }
+                else if (type == TileType.SIDEWAYS)
+                {
+                    return (1, tile.pivot.position);
+                }
             }
-        }
-        return null;
+            return (null, null);
 
-    }
+        }
 
        private void Turn(float turnValue, Vector3 turnPosition) {
 
@@ -108,7 +101,16 @@ public class PlayerController : MonoBehaviour
            Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90 * turnValue, 0);
            transform.rotation = targetRotation;
            movementDirection = transform.forward.normalized;
-    }
+       }
+
+        private void ResetTurnLock()
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.1f, turnLayer);
+            if (hitColliders.Length == 0)
+            {
+                hasTurned = false;
+            }
+        }
     
     private void PlayerSlide(InputAction.CallbackContext context) {
         if (!sliding && IsGrounded()) {
@@ -158,9 +160,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-            //Update
-            score += scoreMultiplier * Time.deltaTime;
-            scoreUpdateEvent.Invoke((int)score);
+        //Update
+        score += scoreMultiplier * Time.deltaTime;
+        scoreUpdateEvent.Invoke((int)score);
 
         controller.Move(transform.forward * playerSpeed * Time.deltaTime);
 
@@ -182,7 +184,19 @@ public class PlayerController : MonoBehaviour
                     animator.speed += (1 / playerSpeed) * Time.deltaTime;
                 }
             }
-    }
+
+            (float? turnDirection, Vector3? turnPosition) = CheckTurn();
+            if (turnDirection.HasValue && turnPosition.HasValue && !hasTurned)
+            {
+                hasTurned = true;
+                float direction = turnDirection.Value;
+                Vector3 targetDirection = Quaternion.AngleAxis(90 * direction, Vector3.up) * movementDirection;
+                turnEvent.Invoke(targetDirection);
+                Turn(direction, turnPosition.Value);
+            }
+
+            ResetTurnLock();
+        }
 
     private bool IsGrounded(float length = .2f){
         Vector3 raycastOriginFirst = transform.position;
