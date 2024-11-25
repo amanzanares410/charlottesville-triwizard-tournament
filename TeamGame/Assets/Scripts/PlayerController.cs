@@ -41,12 +41,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UnityEvent<int> gameOverEvent;
     [SerializeField] private UnityEvent<int> scoreUpdateEvent;
 
+        [SerializeField] private float laneWidth = 1f;
+        [SerializeField] private int numLanes = 3;
+        private int currentLane = 1;
+        private Vector3 targetLane;
+        private InputAction moveAction;
+
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
         slidingAnimationId = Animator.StringToHash("Sliding");
         jumpAction = playerInput.actions["Jump"];
         slideAction = playerInput.actions["Slide"];
+            moveAction = playerInput.actions["Move"];
 
     }
 
@@ -54,12 +61,14 @@ public class PlayerController : MonoBehaviour
     private void OnEnable() {
         slideAction.performed += PlayerSlide;
         jumpAction.performed += PlayerJump;
+            moveAction.performed += PlayerMove;
     }
 
     // Stop listening for player input
     private void OnDisable() {
         slideAction.performed -= PlayerSlide;
         jumpAction.performed -= PlayerJump;
+            moveAction.performed -= PlayerMove;
     }
 
     private void Start() {
@@ -101,7 +110,9 @@ public class PlayerController : MonoBehaviour
            Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90 * turnValue, 0);
            transform.rotation = targetRotation;
            movementDirection = transform.forward.normalized;
-       }
+
+            targetLane = transform.position + movementDirection * laneWidth * (currentLane - 1);
+        }
 
         private void ResetTurnLock()
         {
@@ -111,7 +122,24 @@ public class PlayerController : MonoBehaviour
                 hasTurned = false;
             }
         }
-    
+
+        private void PlayerMove(InputAction.CallbackContext context) {
+            float input = context.ReadValue<float>();
+
+            Debug.Log($"Move Input: {context.ReadValue<float>()}");
+
+            if (input < 0 && currentLane > 0)
+            {
+                currentLane--;
+            }
+            else if (input > 0 && currentLane < numLanes - 1)
+            {
+                currentLane++;
+            }
+
+            // Calculate the target position based on the current lane
+            targetLane = new Vector3((currentLane - 1) * laneWidth, transform.position.y, transform.position.z);
+        }
     private void PlayerSlide(InputAction.CallbackContext context) {
         if (!sliding && IsGrounded()) {
           StartCoroutine(Slide());
@@ -164,12 +192,17 @@ public class PlayerController : MonoBehaviour
         score += scoreMultiplier * Time.deltaTime;
         scoreUpdateEvent.Invoke((int)score);
 
-        controller.Move(transform.forward * playerSpeed * Time.deltaTime);
+            controller.Move(movementDirection * playerSpeed * Time.deltaTime);
 
-        if (IsGrounded() && playerVelocity.y < 0){
+         
+            Vector3 lateralMovement = (targetLane - transform.position).normalized;
+            controller.Move(new Vector3(lateralMovement.x, 0, 0) * Time.deltaTime * 10f);
+
+
+            if (IsGrounded() && playerVelocity.y < 0){
             playerVelocity.y = 0f;
             
-        }
+            }
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
