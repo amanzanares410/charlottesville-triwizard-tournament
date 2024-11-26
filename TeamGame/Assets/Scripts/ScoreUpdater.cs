@@ -5,11 +5,46 @@ using TMPro;
 
 public class ScoreUpdater : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText; // Displays the current score
+    [SerializeField] private TextMeshProUGUI milestoneText; // Displays milestone messages
+
+    // Array of milestone thresholds and their corresponding messages.
+    private (int threshold, string message)[] milestones = new (int, string)[]
+    {
+        (100, "First Year Completed!"),
+        (500, "Second Year Completed!"),
+        (1000, "Third Year Completed!"),
+        (1500, "Fourth Year Completed!"),
+    };
 
     public void updateScore(int score)
     {
         scoreText.text = score.ToString();
+        UpdateMilestone(score);
     }
 
+    private void UpdateMilestone(int score)
+    {
+        string milestoneMessage = "Keep Going!";
+
+        // Check milestones
+        foreach (var milestone in milestones)
+        {
+            if (score >= milestone.threshold)
+            {
+                milestoneMessage = milestone.message;
+            }
+        }
+        // Update the milestoneText UI element
+        if (milestoneText != null)
+        {
+            milestoneText.text = milestoneMessage;
+        }
+        else
+        {
+            Debug.LogError("Milestone TextMeshProUGUI is not assigned in the inspector.");
+        }
+
+    }
 }
+

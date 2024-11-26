@@ -9,8 +9,8 @@ namespace TempleRun.Player {
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float initialPlayerSpeed = 4f;
-    [SerializeField] private float maximumPlayerSpeed = 30f;
-    [SerializeField] private float playerSpeedIncrease = .1f;
+    [SerializeField] private float maximumPlayerSpeed = 25f;
+    [SerializeField] private float playerSpeedIncrease = .05f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float initialGravityValue = -9.81f;
     [SerializeField] private LayerMask groundLayer;
@@ -102,16 +102,17 @@ public class PlayerController : MonoBehaviour
 
        private void Turn(float turnValue, Vector3 turnPosition) {
 
-           Vector3 tempPlayerPosition = new Vector3(turnPosition.x, transform.position.y, turnPosition.z);
-           controller.enabled = false;
-           transform.position = tempPlayerPosition;
-           controller.enabled = true;
-
-           Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90 * turnValue, 0);
-           transform.rotation = targetRotation;
-           movementDirection = transform.forward.normalized;
-
-            targetLane = transform.position + movementDirection * laneWidth * (currentLane - 1);
+        Vector3 tempPlayerPosition = new Vector3(turnPosition.x, transform.position.y, turnPosition.z);
+        controller.enabled = false;
+        transform.position = tempPlayerPosition;
+        Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90 * turnValue, 0);
+        transform.rotation = targetRotation;    
+        movementDirection = (transform.rotation * Vector3.forward).normalized;
+        Vector3 lateralOffset = (currentLane - 1) * laneWidth * Vector3.Cross(movementDirection, Vector3.up);
+        targetLane = transform.position + lateralOffset;
+        controller.enabled = true;
+        controller.Move(Vector3.zero);
+        playerSpeed = 20;
         }
 
         private void ResetTurnLock()
@@ -136,9 +137,9 @@ public class PlayerController : MonoBehaviour
             {
                 currentLane++;
             }
-
-            // Calculate the target position based on the current lane
             targetLane = new Vector3((currentLane - 1) * laneWidth, transform.position.y, transform.position.z);
+           
+
         }
     private void PlayerSlide(InputAction.CallbackContext context) {
         if (!sliding && IsGrounded()) {
@@ -172,16 +173,15 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // private void PlayerFalls(InputAction.CallbackContext context, float slideInput) {
-    //     if (IsGrounded())
-    //     {
-    //         // Create a velocity vector for sliding along the x-axis
-    //         Vector3 slideVelocity = new Vector3(slideInput, 0, 0);
-    //         controller.Move(slideVelocity * Time.deltaTime);
-    //     }
-    // }
 
     private void Update() {
+        if (!controller.enabled)
+        {
+        Debug.LogWarning("CharacterController was disabled, enabling now.");
+        controller.enabled = true;
+        }
+
+
         if (!IsGrounded(20f))
         {
             GameOver();
@@ -189,46 +189,47 @@ public class PlayerController : MonoBehaviour
         }
 
         //Update
+      
         score += scoreMultiplier * Time.deltaTime;
         scoreUpdateEvent.Invoke((int)score);
 
-            controller.Move(movementDirection * playerSpeed * Time.deltaTime);
+        controller.Move(movementDirection * playerSpeed * Time.deltaTime);
 
-         
-            Vector3 lateralMovement = (targetLane - transform.position).normalized;
-            controller.Move(new Vector3(lateralMovement.x, 0, 0) * Time.deltaTime * 10f);
+        Vector3 lateralMovement = (targetLane - transform.position).normalized;
+        controller.Move(new Vector3(lateralMovement.x, 0, 0) * Time.deltaTime * 10f);
 
 
-            if (IsGrounded() && playerVelocity.y < 0){
-            playerVelocity.y = 0f;
+        if (IsGrounded() && playerVelocity.y < 0){
+        playerVelocity.y = 0f;
             
-            }
+        }
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-            if (playerSpeed < maximumPlayerSpeed)
+        if (playerSpeed < maximumPlayerSpeed)
+        {
+            playerSpeed += Time.deltaTime * playerSpeedIncrease;
+            gravity = Mathf.Clamp(initialGravityValue - playerSpeed, -50f, -9.81f);
+
+            if (animator.speed < 1.25f)
             {
-                playerSpeed += Time.deltaTime * playerSpeedIncrease;
-                gravity = initialGravityValue - playerSpeed;
+                animator.speed = Mathf.Lerp(animator.speed, 1 + (playerSpeed / maximumPlayerSpeed), Time.deltaTime);
 
-                if (animator.speed < 1.25f)
-                {
-                    animator.speed += (1 / playerSpeed) * Time.deltaTime;
-                }
             }
+        }
 
-            (float? turnDirection, Vector3? turnPosition) = CheckTurn();
-            if (turnDirection.HasValue && turnPosition.HasValue && !hasTurned)
-            {
-                hasTurned = true;
-                float direction = turnDirection.Value;
-                Vector3 targetDirection = Quaternion.AngleAxis(90 * direction, Vector3.up) * movementDirection;
-                turnEvent.Invoke(targetDirection);
-                Turn(direction, turnPosition.Value);
-            }
+        (float? turnDirection, Vector3? turnPosition) = CheckTurn();
+        if (turnDirection.HasValue && turnPosition.HasValue && !hasTurned)
+        {
+            hasTurned = true;
+            float direction = turnDirection.Value;
+            Vector3 targetDirection = Quaternion.AngleAxis(90 * direction, Vector3.up) * movementDirection;
+            turnEvent.Invoke(targetDirection);
+            Turn(direction, turnPosition.Value);
+        }
 
-            ResetTurnLock();
+        ResetTurnLock();
         }
 
     private bool IsGrounded(float length = .2f){
@@ -269,3 +270,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+
