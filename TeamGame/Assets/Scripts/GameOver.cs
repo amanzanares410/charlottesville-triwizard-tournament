@@ -19,5 +19,9 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void ChangeCharacter()
+    {
+        SceneManager.LoadScene("CharacterSelect");
+    }
     
 }

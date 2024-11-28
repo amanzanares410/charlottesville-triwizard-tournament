@@ -360,10 +360,12 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/Scripts/CharacterSelect.cs"
 "Assets/Scripts/GameOver.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/ScoreUpdater.cs"
 "Assets/Scripts/TileSpawner.cs"
+"Assets/Scripts/WelcomeScreenManager.cs"
 "Assets/TempleRunPrefabs/Tile.cs"
 -langversion:9.0
 /deterministic
