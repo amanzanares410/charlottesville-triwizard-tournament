@@ -8,6 +8,8 @@ namespace TempleRun.Player {
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private CharacterSelectionTracker selectionTracker;
+    [SerializeField] private SpriteRenderer playerSpriteRenderer;
     [SerializeField] private float initialPlayerSpeed = 4f;
     [SerializeField] private float maximumPlayerSpeed = 25f;
     [SerializeField] private float playerSpeedIncrease = .05f;
@@ -74,6 +76,15 @@ public class PlayerController : MonoBehaviour
     private void Start() {
         playerSpeed = initialPlayerSpeed;
         gravity = initialGravityValue;
+        if (selectionTracker.selectedCharacter != null)
+        {
+            playerSpriteRenderer.sprite = selectionTracker.selectedCharacter.characterSprite;
+            Debug.Log($"Loaded Character: {selectionTracker.selectedCharacter.characterName}");
+        }
+        else
+        {
+            Debug.LogError("No character selected! Returning to character selection.");
+        }
     }
 
         private (float?, Vector3?) CheckTurn()

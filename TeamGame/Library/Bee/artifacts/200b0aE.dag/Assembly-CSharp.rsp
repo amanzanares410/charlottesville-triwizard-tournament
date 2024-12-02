@@ -367,6 +367,8 @@
 "Assets/Animated Trees Package/DemoSceneContent/HideImage.cs"
 "Assets/Animated Trees Package/DemoSceneContent/HideShowButtons.cs"
 "Assets/Scripts/CharacterSelect.cs"
+"Assets/Scripts/CharacterSelectionData.cs"
+"Assets/Scripts/CharacterSelectionTracker.cs"
 "Assets/Scripts/GameOver.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/ScoreUpdater.cs"

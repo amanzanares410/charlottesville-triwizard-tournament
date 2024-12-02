@@ -5,21 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private CharacterSelectionTracker selectionTracker;
+    [SerializeField] private CharacterData[] characters;
 
-    // Update is called once per frame
-    void Update()
+    public void StartGame(int characterIndex)
     {
-        
-    }
+        if (characterIndex < 0 || characterIndex >= characters.Length) return;
 
-    public void StartGame(string school)
-    {
+        // Mark the selected character in the tracker
+        selectionTracker.selectedCharacter = characters[characterIndex];
         SceneManager.LoadScene("SampleScene");
-        Debug.Log(school);
     }
 }
