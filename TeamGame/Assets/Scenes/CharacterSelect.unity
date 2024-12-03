@@ -276,11 +276,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1587710315}
         m_TargetAssemblyTypeName: CharacterSelect, Assembly-CSharp
         m_MethodName: StartGame
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: eng
           m_BoolArgument: 0
@@ -877,7 +877,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1587710315}
         m_TargetAssemblyTypeName: CharacterSelect, Assembly-CSharp
         m_MethodName: StartGame
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1010,11 +1010,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1587710315}
         m_TargetAssemblyTypeName: CharacterSelect, Assembly-CSharp
         m_MethodName: StartGame
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: arts
           m_BoolArgument: 0
@@ -1143,11 +1143,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1587710315}
         m_TargetAssemblyTypeName: CharacterSelect, Assembly-CSharp
         m_MethodName: StartGame
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: nursing
           m_BoolArgument: 0
@@ -1219,6 +1219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8c8d068b4b443118146323ee944779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectionTracker: {fileID: 0}
+  characters: []
 --- !u!4 &1587710316
 Transform:
   m_ObjectHideFlags: 0
