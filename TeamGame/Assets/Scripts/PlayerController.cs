@@ -22,8 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AnimationClip runAnimationClip;
     [SerializeField] private Animator animator;
     [SerializeField] private float scoreMultiplier = 10f;
+    [SerializeField] private AudioSource runningAudio;
 
-    [SerializeField] private float playerSpeed;
+        [SerializeField] private float playerSpeed;
     private float gravity;
     private Vector3 movementDirection = Vector3.forward;
     private Vector3 playerVelocity;
@@ -77,6 +78,12 @@ public class PlayerController : MonoBehaviour
         {
             //characterRenderer.sprite = selectionData.selectedCharacterSprite;
             Debug.Log(selectionData.selectedCharacterName);
+        }
+
+        if (runningAudio != null)
+        {
+            runningAudio.loop = true;
+            runningAudio.Play();
         }
     }
 
@@ -227,6 +234,10 @@ public class PlayerController : MonoBehaviour
             gameOverEvent.Invoke((int)score);
             gameObject.SetActive(false);
 
+            if (runningAudio != null)
+            {
+                runningAudio.Stop();
+            }
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
