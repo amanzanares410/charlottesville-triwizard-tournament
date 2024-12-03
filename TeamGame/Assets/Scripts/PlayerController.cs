@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction jumpAction;
     private InputAction slideAction;
+    private InputAction turnAction;
     private bool sliding = false;
-    private bool hasTurned = false;
     private CharacterController controller;
 
     private float score = 0;
@@ -44,19 +44,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UnityEvent<int> gameOverEvent;
     [SerializeField] private UnityEvent<int> scoreUpdateEvent;
 
-        [SerializeField] private float laneWidth = 1f;
-        [SerializeField] private int numLanes = 3;
-        private int currentLane = 1;
-        private Vector3 targetLane;
-        private InputAction moveAction;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
         slidingAnimationId = Animator.StringToHash("Sliding");
+        turnAction = playerInput.actions["Turn"];
         jumpAction = playerInput.actions["Jump"];
         slideAction = playerInput.actions["Slide"];
-            moveAction = playerInput.actions["Move"];
 
     }
 
@@ -64,14 +59,14 @@ public class PlayerController : MonoBehaviour
     private void OnEnable() {
         slideAction.performed += PlayerSlide;
         jumpAction.performed += PlayerJump;
-            moveAction.performed += PlayerMove;
+        turnAction.performed += PlayerTurn;
     }
 
     // Stop listening for player input
     private void OnDisable() {
         slideAction.performed -= PlayerSlide;
         jumpAction.performed -= PlayerJump;
-            moveAction.performed -= PlayerMove;
+        turnAction.performed -= PlayerTurn;
     }
 
     private void Start() {
@@ -85,71 +80,51 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-        private (float?, Vector3?) CheckTurn()
+        private void PlayerTurn(InputAction.CallbackContext context)
+        {
+            Vector3? turnPosition = CheckTurn(context.ReadValue<float>());
+            if (!turnPosition.HasValue)
+            {
+
+                GameOver();
+                return;
+            }
+            Vector3 targetDirection = Quaternion.AngleAxis(90 * context.ReadValue<float>(), Vector3.up) * movementDirection;
+            turnEvent.Invoke(targetDirection);
+            Turn(context.ReadValue<float>(), turnPosition.Value);
+
+        }
+
+        private Vector3? CheckTurn(float turnValue)
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, .1f, turnLayer);
             if (hitColliders.Length != 0)
             {
                 Tile tile = hitColliders[0].transform.parent.GetComponent<Tile>();
                 TileType type = tile.type;
-                if (type == TileType.LEFT)
+                if ((type == TileType.LEFT && turnValue == -1) ||
+                    (type == TileType.RIGHT && turnValue == 1) ||
+                    (type == TileType.SIDEWAYS))
                 {
-                    return (-1, tile.pivot.position);
-                }
-                else if (type == TileType.RIGHT)
-                {
-                    return (1, tile.pivot.position);
-                }
-                else if (type == TileType.SIDEWAYS)
-                {
-                    return (1, tile.pivot.position);
+                    return tile.pivot.position;
                 }
             }
-            return (null, null);
+            return null;
 
         }
 
-       private void Turn(float turnValue, Vector3 turnPosition) {
+       private void Turn(float turnValue, Vector3 turnPosition) 
+       {
+            Vector3 tempPlayerPosition = new Vector3(turnPosition.x, transform.position.y, turnPosition.z);
+            controller.enabled = false;
+            transform.position = tempPlayerPosition;
+            controller.enabled = true;
 
-        Vector3 tempPlayerPosition = new Vector3(turnPosition.x, transform.position.y, turnPosition.z);
-        controller.enabled = false;
-        transform.position = tempPlayerPosition;
-        Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90 * turnValue, 0);
-        transform.rotation = targetRotation;    
-        movementDirection = (transform.rotation * Vector3.forward).normalized;
-        Vector3 lateralOffset = (currentLane - 1) * laneWidth * Vector3.Cross(movementDirection, Vector3.up);
-        targetLane = transform.position + lateralOffset;
-        controller.enabled = true;
-        controller.Move(Vector3.zero);
-        playerSpeed = 20;
-        }
+            Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, 90 * turnValue, 0);
+            transform.rotation = targetRotation;
+            movementDirection = transform.forward.normalized;
+       }
 
-        private void ResetTurnLock()
-        {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.1f, turnLayer);
-            if (hitColliders.Length == 0)
-            {
-                hasTurned = false;
-            }
-        }
-
-        private void PlayerMove(InputAction.CallbackContext context) {
-            float input = context.ReadValue<float>();
-
-            Debug.Log($"Move Input: {context.ReadValue<float>()}");
-
-            if (input < 0 && currentLane > 0)
-            {
-                currentLane--;
-            }
-            else if (input > 0 && currentLane < numLanes - 1)
-            {
-                currentLane++;
-            }
-            targetLane = new Vector3((currentLane - 1) * laneWidth, transform.position.y, transform.position.z);
-           
-
-        }
     private void PlayerSlide(InputAction.CallbackContext context) {
         if (!sliding && IsGrounded()) {
           StartCoroutine(Slide());
@@ -182,7 +157,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
     private void Update() {
         if (!controller.enabled)
         {
@@ -202,10 +176,7 @@ public class PlayerController : MonoBehaviour
         score += scoreMultiplier * Time.deltaTime;
         scoreUpdateEvent.Invoke((int)score);
 
-        controller.Move(movementDirection * playerSpeed * Time.deltaTime);
-
-        Vector3 lateralMovement = (targetLane - transform.position).normalized;
-        controller.Move(new Vector3(lateralMovement.x, 0, 0) * Time.deltaTime * 10f);
+        controller.Move(transform.forward * playerSpeed * Time.deltaTime);
 
 
         if (IsGrounded() && playerVelocity.y < 0){
@@ -227,19 +198,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-
-        (float? turnDirection, Vector3? turnPosition) = CheckTurn();
-        if (turnDirection.HasValue && turnPosition.HasValue && !hasTurned)
-        {
-            hasTurned = true;
-            float direction = turnDirection.Value;
-            Vector3 targetDirection = Quaternion.AngleAxis(90 * direction, Vector3.up) * movementDirection;
-            turnEvent.Invoke(targetDirection);
-            Turn(direction, turnPosition.Value);
-        }
-
-        ResetTurnLock();
-        }
+    }
 
     private bool IsGrounded(float length = .2f){
         Vector3 raycastOriginFirst = transform.position;
