@@ -22,7 +22,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AnimationClip runAnimationClip;
     [SerializeField] private Animator animator;
     [SerializeField] private float scoreMultiplier = 10f;
+
     [SerializeField] private AudioSource runningAudio;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip jumpAudio;
+    [SerializeField] private AudioClip slideAudio;
 
         [SerializeField] private float playerSpeed;
     private float gravity;
@@ -134,7 +138,8 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerSlide(InputAction.CallbackContext context) {
         if (!sliding && IsGrounded()) {
-          StartCoroutine(Slide());
+            PlaySound(slideAudio);
+            StartCoroutine(Slide());
         }
     }
 
@@ -158,11 +163,18 @@ public class PlayerController : MonoBehaviour
     private void PlayerJump(InputAction.CallbackContext context) {
 
         if(IsGrounded()){
+            PlaySound(jumpAudio);
             playerVelocity.y += Mathf.Sqrt(jumpHeight * gravity * -3f);
             controller.Move(playerVelocity * Time.deltaTime);
         }
         
     }
+
+        private void PlaySound(AudioClip clip)
+        {
+            if (sfxSource != null && clip != null)
+                sfxSource.PlayOneShot(clip);
+        }
 
     private void Update() {
         if (!controller.enabled)
