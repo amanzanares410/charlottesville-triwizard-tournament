@@ -1,10 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCharacterData", menuName = "Game/CharacterData")]
-public class CharacterData : ScriptableObject
+[CreateAssetMenu(fileName = "CharacterSelection", menuName = "Game/CharacterSelection")]
+public class CharacterSelectionData : ScriptableObject
 {
-    public string characterName;
-    public Sprite characterSprite;
-    public int characterHealth;
-    public int characterPower;
+    public string selectedCharacterName;
+    //public Sprite selectedCharacterSprite;
 }
+

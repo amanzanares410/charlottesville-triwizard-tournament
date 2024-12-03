@@ -1347,6 +1347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba68ffd1ec8411598d77e1c3c282d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectionData: {fileID: 11400000, guid: 7a0e80c1527184c799c0e78c1c1d23d7, type: 2}
   initialPlayerSpeed: 10
   maximumPlayerSpeed: 25
   playerSpeedIncrease: 0.1

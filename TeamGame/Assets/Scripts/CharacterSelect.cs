@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CharacterSelect : MonoBehaviour
+public class CharacterSelectionManager : MonoBehaviour
 {
-    [SerializeField] private CharacterSelectionTracker selectionTracker;
-    [SerializeField] private CharacterData[] characters;
+    [SerializeField] private CharacterSelectionData selectionData;
+    //[SerializeField] private Sprite[] characterSprites;
+    [SerializeField] private string[] characterNames;
 
-    public void StartGame(int characterIndex)
+    public void SelectCharacter(int characterIndex)
     {
-        if (characterIndex < 0 || characterIndex >= characters.Length) return;
-
-        // Mark the selected character in the tracker
-        selectionTracker.selectedCharacter = characters[characterIndex];
+        selectionData.selectedCharacterName = characterNames[characterIndex];
+        //selectionData.selectedCharacterSprite = characterSprites[characterIndex];
         SceneManager.LoadScene("SampleScene");
     }
 }
+
