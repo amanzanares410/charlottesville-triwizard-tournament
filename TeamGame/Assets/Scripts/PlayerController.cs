@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask turnLayer;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private AnimationClip slideAnimationClip;
+    [SerializeField] private AnimationClip runAnimationClip;
     [SerializeField] private Animator animator;
     [SerializeField] private float scoreMultiplier = 10f;
 
