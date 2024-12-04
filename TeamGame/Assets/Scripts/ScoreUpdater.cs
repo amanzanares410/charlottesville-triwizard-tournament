@@ -11,11 +11,13 @@ public class ScoreUpdater : MonoBehaviour
     // Array of milestone thresholds and their corresponding messages.
     private (int threshold, string message)[] milestones = new (int, string)[]
     {
-        (100, "First Year Completed!"),
+        (250, "First Year Completed!"),
         (500, "Second Year Completed!"),
         (1000, "Third Year Completed!"),
         (1500, "Fourth Year Completed!"),
     };
+
+    // Track whether the special object has been shown
 
     public void updateScore(int score)
     {
@@ -44,7 +46,6 @@ public class ScoreUpdater : MonoBehaviour
         {
             Debug.LogError("Milestone TextMeshProUGUI is not assigned in the inspector.");
         }
-
     }
-}
 
+}

@@ -27,8 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioClip jumpAudio;
     [SerializeField] private AudioClip slideAudio;
-
-        [SerializeField] private float playerSpeed;
+    [SerializeField] private float playerSpeed;
     private float gravity;
     private Vector3 movementDirection = Vector3.forward;
     private Vector3 playerVelocity;
@@ -142,7 +141,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Slide());
         }
     }
-
+    
     private IEnumerator Slide() {
         sliding = true;
         Vector3 originalControllerCenter = controller.center;
@@ -160,21 +159,23 @@ public class PlayerController : MonoBehaviour
         sliding = false;
     }
 
-    private void PlayerJump(InputAction.CallbackContext context) {
-
-        if(IsGrounded()){
-            PlaySound(jumpAudio);
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * gravity * -3f);
-            controller.Move(playerVelocity * Time.deltaTime);
-        }
-        
+private void PlayerJump(InputAction.CallbackContext context)
+{
+   if(IsGrounded()){
+        PlaySound(jumpAudio);
+        playerVelocity.y += Mathf.Sqrt(jumpHeight * gravity * -2f);
+        controller.Move(playerVelocity * Time.deltaTime);
     }
+    
+}
 
-        private void PlaySound(AudioClip clip)
-        {
-            if (sfxSource != null && clip != null)
-                sfxSource.PlayOneShot(clip);
-        }
+    
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (sfxSource != null && clip != null)
+            sfxSource.PlayOneShot(clip);
+    }
 
     private void Update() {
         if (!controller.enabled)

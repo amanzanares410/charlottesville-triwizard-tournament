@@ -2,10 +2,10 @@ Unity Editor version:    2022.3.51f1 (9f9d16c45e54)
 Branch:                  2022.3/staging
 Build type:              Release
 Batch mode:              YES
-macOS version:           Version 13.5 (Build 22G2074)
-Darwin version:          22.6.0
-Architecture:            x86_64
-Running under Rosetta:   YES
+macOS version:           Version 14.4 (Build 23E214)
+Darwin version:          23.4.0
+Architecture:            arm64
+Running under Rosetta:   NO
 Available memory:        8192 MB
 Using pre-set license
 Pro License: YES
@@ -18,13 +18,13 @@ COMMAND LINE ARGUMENTS:
 -name
 AssetImportWorker0
 -projectPath
-/Users/carinayano/team-charlottesville-triwizard-tournament/TeamGame
+/Users/xavieremmie/team-charlottesville-triwizard-tournament/TeamGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-60049
-Successfully changed project path to: /Users/carinayano/team-charlottesville-triwizard-tournament/TeamGame
-/Users/carinayano/team-charlottesville-triwizard-tournament/TeamGame
+59319
+Successfully changed project path to: /Users/xavieremmie/team-charlottesville-triwizard-tournament/TeamGame
+/Users/xavieremmie/team-charlottesville-triwizard-tournament/TeamGame
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -56,20 +56,18 @@ Successfully changed project path to: /Users/carinayano/team-charlottesville-tri
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [8749699712]  Target information:
+Player connection [8658156224]  Target information:
 
-Player connection [8749699712]  * "[IP] 172.25.161.36 [Port] 0 [Flags] 2 [Guid] 836898120 [EditorId] 836898120 [Version] 1048832 [Id] OSXEditor(0,MacBook-Pro-6.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+Player connection [8658156224]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2063574877 [EditorId] 2063574877 [Version] 1048832 [Id] OSXEditor(0,MacBook-Pro-3.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
 
-Player connection [8749699712]  * "[IP] 172.25.92.145 [Port] 0 [Flags] 2 [Guid] 836898120 [EditorId] 836898120 [Version] 1048832 [Id] OSXEditor(0,MacBook-Pro-6.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
-
-Player connection [8749699712] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [8749699712] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [8658156224] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [8658156224] Host joined alternative multi-casting on [225.0.0.222:34997]...
 [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-Refreshing native plugins compatible for Editor in 15.55 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 2.84 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.51f1 (9f9d16c45e54)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path /Users/carinayano/team-charlottesville-triwizard-tournament/TeamGame/Assets
+[Subsystems] Discovering subsystems at path /Users/xavieremmie/team-charlottesville-triwizard-tournament/TeamGame/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
  preferred device: Apple M3 (high power)
 Metal devices available: 1
@@ -80,101 +78,101 @@ Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
 Mono config path = '/Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56532
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56390
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.001690 seconds.
-- Loaded All Assemblies, in  0.576 seconds
+Registered in 0.000669 seconds.
+- Loaded All Assemblies, in  0.219 seconds
 Native extension for OSXStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.763 seconds
-Domain Reload Profiling: 1340ms
-	BeginReloadAssembly (213ms)
+- Finished resetting the current domain, in  0.193 seconds
+Domain Reload Profiling: 413ms
+	BeginReloadAssembly (44ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (2ms)
-	RebuildCommonClasses (39ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (149ms)
-	LoadAllAssembliesAndSetupDomain (164ms)
-		LoadAssemblies (213ms)
+		CreateAndSetChildDomain (0ms)
+	RebuildCommonClasses (20ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (111ms)
+		LoadAssemblies (44ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (154ms)
-			TypeCache.Refresh (150ms)
-				TypeCache.ScanAssembly (128ms)
+		AnalyzeDomain (110ms)
+			TypeCache.Refresh (109ms)
+				TypeCache.ScanAssembly (98ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (3ms)
-	FinalizeReload (764ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (194ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (690ms)
+		SetupLoadedEditorAssemblies (154ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (25ms)
-			SetLoadedEditorAssemblies (15ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (7ms)
-			ProcessInitializeOnLoadAttributes (478ms)
-			ProcessInitializeOnLoadMethodAttributes (162ms)
+			BeforeProcessingInitializeOnLoad (1ms)
+			ProcessInitializeOnLoadAttributes (115ms)
+			ProcessInitializeOnLoadMethodAttributes (28ms)
 			AfterProcessingInitializeOnLoad (0ms)
-			EditorAssembliesLoaded (1ms)
+			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (0ms)
 ========================================================================
 Worker process is ready to serve import requests
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.078 seconds
+- Loaded All Assemblies, in  0.353 seconds
 Native extension for OSXStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.940 seconds
-Domain Reload Profiling: 3030ms
-	BeginReloadAssembly (334ms)
+- Finished resetting the current domain, in  0.342 seconds
+Domain Reload Profiling: 696ms
+	BeginReloadAssembly (59ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (38ms)
+		DisableScriptedObjects (2ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (40ms)
-	RebuildCommonClasses (30ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (102ms)
-	LoadAllAssembliesAndSetupDomain (613ms)
-		LoadAssemblies (506ms)
+		CreateAndSetChildDomain (14ms)
+	RebuildCommonClasses (18ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (16ms)
+	LoadAllAssembliesAndSetupDomain (254ms)
+		LoadAssemblies (162ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (252ms)
-			TypeCache.Refresh (187ms)
-				TypeCache.ScanAssembly (164ms)
-			ScanForSourceGeneratedMonoScriptInfo (48ms)
-			ResolveRequiredComponents (16ms)
-	FinalizeReload (1943ms)
+		AnalyzeDomain (117ms)
+			TypeCache.Refresh (106ms)
+				TypeCache.ScanAssembly (93ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (342ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1670ms)
+		SetupLoadedEditorAssemblies (269ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (17ms)
-			SetLoadedEditorAssemblies (6ms)
+			InitializePlatformSupportModulesInManaged (2ms)
+			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (108ms)
-			ProcessInitializeOnLoadAttributes (1452ms)
-			ProcessInitializeOnLoadMethodAttributes (84ms)
+			BeforeProcessingInitializeOnLoad (27ms)
+			ProcessInitializeOnLoadAttributes (224ms)
+			ProcessInitializeOnLoadMethodAttributes (12ms)
 			AfterProcessingInitializeOnLoad (1ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (8ms)
+		AwakeInstancesAfterBackupRestoration (2ms)
 Launching external process: /Applications/Unity/Hub/Editor/2022.3.51f1/Unity.app/Contents/Tools/UnityShaderCompiler
-Launched and connected shader compiler UnityShaderCompiler after 0.93 seconds
-Refreshing native plugins compatible for Editor in 3.92 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler after 0.18 seconds
+Refreshing native plugins compatible for Editor in 1.69 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 4062 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 37 unused Assets / (196.5 KB). Loaded Objects now: 4531.
-Memory consumption went from 157.4 MB to 157.2 MB.
-Total: 21.444958 ms (FindLiveObjects: 0.947708 ms CreateObjectMapping: 0.094500 ms MarkObjects: 19.220041 ms  DeleteObjects: 1.180833 ms)
+Unloading 37 unused Assets / (172.4 KB). Loaded Objects now: 4532.
+Memory consumption went from 158.7 MB to 158.5 MB.
+Total: 2.670542 ms (FindLiveObjects: 0.132125 ms CreateObjectMapping: 0.043250 ms MarkObjects: 2.352834 ms  DeleteObjects: 0.142000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -191,459 +189,64 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 1380235.178694 seconds.
-  path: Assets/TempleRunPrefabs/Left.prefab
-  artifactKey: Guid(57a0c77d40fb7f64f88c73e669bd75d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TempleRunPrefabs/Left.prefab using Guid(57a0c77d40fb7f64f88c73e669bd75d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'c6fbc2ab9dc58b8e0bd4051d3650a798') in 0.608900 seconds
+  Time since last request: 2071836.745628 seconds.
+  path: Assets/Scripts/ScoreUpdater.cs
+  artifactKey: Guid(b88ad3b2e5a3eb148b58238cac63b66e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ScoreUpdater.cs using Guid(b88ad3b2e5a3eb148b58238cac63b66e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'c7ed504ea177d91125fd039c10ca8165') in 0.006376 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 259
-========================================================================
-Received Import Request.
-  Time since last request: 112.402319 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_baseColor_V2.png
-  artifactKey: Guid(ae79ba123118306469bf2b5e45bd3e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_baseColor_V2.png using Guid(ae79ba123118306469bf2b5e45bd3e03) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'eebc45178dc2b2c6331a8c5cef33236e') in 0.448484 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 6.133214 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_baseColor.png
-  artifactKey: Guid(e60892e4de5b03446804550ab7568842) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_baseColor.png using Guid(e60892e4de5b03446804550ab7568842) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'ac20b93d45c433384d43d285d2eb68d9') in 0.116123 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 2.377494 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_Metallic.png
-  artifactKey: Guid(e3e471b8b53817846aaf37037abda635) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_Metallic.png using Guid(e3e471b8b53817846aaf37037abda635) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '7d993363bfde4f71090e5313a5889df7') in 0.090497 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 40.706807 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_output_height.png
-  artifactKey: Guid(f322957ad3f6ee64aaa68998ebf917c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_output_height.png using Guid(f322957ad3f6ee64aaa68998ebf917c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'de09e5550748972fa8eefb9890475404') in 0.158497 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.002264 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_ao.png
-  artifactKey: Guid(6538878c3a1c9b8498146ae72fde3880) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_ao.png using Guid(6538878c3a1c9b8498146ae72fde3880) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '7aadc52acf91ef51f83cf7d5311cfec4') in 0.013316 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.001333 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_normal.png
-  artifactKey: Guid(193ea413bc221674aa0f2b90f348d5dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_normal.png using Guid(193ea413bc221674aa0f2b90f348d5dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '1341a0f0b792d0fec94da0e38d05ec43') in 0.278662 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000676 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_ao.png
-  artifactKey: Guid(00aac2ceecee52848aece56d03126758) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_ao.png using Guid(00aac2ceecee52848aece56d03126758) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '671111962783232a75b074815207197a') in 0.016238 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000157 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_baseColor_V1.png
-  artifactKey: Guid(e5d0a0ead3f50e7439778e8437a72385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_baseColor_V1.png using Guid(e5d0a0ead3f50e7439778e8437a72385) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '423c39af8427ca4b658cb33ceb6381c8') in 0.013101 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000209 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_height.png
-  artifactKey: Guid(1cb5a755458b47545b53a5204bc2533b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_height.png using Guid(1cb5a755458b47545b53a5204bc2533b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '3ce5eb68ae34e47d999492ad9557803c') in 0.021449 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_metallic.png
-  artifactKey: Guid(c0362a6d540550c46b6c06a3939843bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_metallic.png using Guid(c0362a6d540550c46b6c06a3939843bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'f60c270add46376e8647eb7f0ebaac72') in 0.015136 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000112 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_baseColor.png
-  artifactKey: Guid(05d6368bafd253342b452bbb607729e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick05/T_Brick05_baseColor.png using Guid(05d6368bafd253342b452bbb607729e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'f71fb291fb0922b6ca04776cc5c1a8d7') in 0.008155 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.733570 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor.png
-  artifactKey: Guid(34759476a5b40544ba7c0dd3e7a0d400) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor.png using Guid(34759476a5b40544ba7c0dd3e7a0d400) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '16ec064e1931b2925451b45915330dce') in 0.031891 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000235 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant01.png
-  artifactKey: Guid(6c03924889daa7b4c9fff5cdd26a8baa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant01.png using Guid(6c03924889daa7b4c9fff5cdd26a8baa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '0334ec6735c2d2f348651d7325954012') in 0.008922 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.038334 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant02.png
-  artifactKey: Guid(e90dde19e6b8ea5429a9b6d9511e65af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant02.png using Guid(e90dde19e6b8ea5429a9b6d9511e65af) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '90cb7cc45957e78080c5516c8f64638a') in 0.007917 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000184 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant03.png
-  artifactKey: Guid(7b47dd74999412842acaaad05b27cc77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant03.png using Guid(7b47dd74999412842acaaad05b27cc77) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '05ee26d7cf35d8ce44e54ae2fe089c85') in 0.012409 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.385118 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant04.png
-  artifactKey: Guid(da1e5fc9f958bba4b99d11ff08b808bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_basecolor_Variant04.png using Guid(da1e5fc9f958bba4b99d11ff08b808bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '2b75a2bcdf37541899be1aa3b8bc9e13') in 0.013187 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.049512 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_metallic.png
-  artifactKey: Guid(b8376bd9b886c3a4898017221178aa12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_metallic.png using Guid(b8376bd9b886c3a4898017221178aa12) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '27e2d52dde199b7e5429b21bcb8a2356') in 0.016106 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.216298 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_roughness.png
-  artifactKey: Guid(2adca281edbee6949a1e891805e79bf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick01/T_brick_roughness.png using Guid(2adca281edbee6949a1e891805e79bf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'a8988fa917f4c924df191a111e4b1b01') in 0.009193 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.149319 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_basecolor.png
-  artifactKey: Guid(326bdb51bb3f0014481a87c8cb959173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_basecolor.png using Guid(326bdb51bb3f0014481a87c8cb959173) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'c8ef9c694740e5f335e7ae58e2fcf1ff') in 0.008672 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.072739 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_basecolor_Variant02.png
-  artifactKey: Guid(368b6235e445efa4792349cf0321a3a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_basecolor_Variant02.png using Guid(368b6235e445efa4792349cf0321a3a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '4767dcb9c9aec5e749e15c6518127e0c') in 0.013195 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.323414 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_basecolor_Variant04.png
-  artifactKey: Guid(34aa1aec5585f7b439d109832e2a25a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_basecolor_Variant04.png using Guid(34aa1aec5585f7b439d109832e2a25a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '05e70fab19025e82c8cc85dde5d26be5') in 0.025501 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000141 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_metallic.png
-  artifactKey: Guid(00c2ac7d289279a4f846d0018843cc9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_metallic.png using Guid(00c2ac7d289279a4f846d0018843cc9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '57de4807132235dec2df0b6465c88c13') in 0.010837 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.026033 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_normal.png
-  artifactKey: Guid(03770cf663f78434c95c2e0e5147d7f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Stone/T_Stone01_normal.png using Guid(03770cf663f78434c95c2e0e5147d7f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '072a8b118d8ed9cac9689220595fc4e6') in 0.015086 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.152411 seconds.
-  path: Assets/Materials/Grass Materials/Stylized Grass Texture/Textures/Vol_42_1_Base_Color.png
-  artifactKey: Guid(b900361e13e6eaa44963cb851faf3ed3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Grass Materials/Stylized Grass Texture/Textures/Vol_42_1_Base_Color.png using Guid(b900361e13e6eaa44963cb851faf3ed3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'da5ec3e3056470bffb4026fc7ed120ca') in 0.022940 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.424103 seconds.
-  path: Assets/Materials/Grass Materials/Stylized Grass Texture/Textures/Vol_42_1_Normal.png
-  artifactKey: Guid(9e91cd5bde426714d9f0ef165f143d7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Grass Materials/Stylized Grass Texture/Textures/Vol_42_1_Normal.png using Guid(9e91cd5bde426714d9f0ef165f143d7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: 'b959200ef69a9b26e7e5ba1b5d8cf5f7') in 0.030759 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 1.132288 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_baseColor_V3.png
-  artifactKey: Guid(beb2dbb70a271184cba898f11d8d1cd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick04/T_Brick04_baseColor_V3.png using Guid(beb2dbb70a271184cba898f11d8d1cd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '2768be1dbccfa49daf5be0c3a6287dd7') in 0.038737 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000102 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant04.png
-  artifactKey: Guid(f4fc6b6ca105d964cbc224966682617c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant04.png using Guid(f4fc6b6ca105d964cbc224966682617c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '10b668b3d2a53b188dfc6a893cb6fc58') in 0.009877 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000188 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_height.png
-  artifactKey: Guid(a81c47909e5f46e4880c8ff2753a3b7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_height.png using Guid(a81c47909e5f46e4880c8ff2753a3b7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '803865e6a80eb992b271147b4245ef95') in 0.010515 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000142 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant06.png
-  artifactKey: Guid(14f5f896fa9e51041a89c83621bc74c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant06.png using Guid(14f5f896fa9e51041a89c83621bc74c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '5fe045f57b68195aa9ca54998f3b5815') in 0.010046 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000087 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant05.png
-  artifactKey: Guid(31710aad91791344f81a3c45264dc840) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant05.png using Guid(31710aad91791344f81a3c45264dc840) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '51e3a48a7850d8d4c41f873dceee5d34') in 0.007869 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.013855 seconds.
-  path: Assets/Animated Trees Package/Textures/sycamore_leaves_2_normal.png
-  artifactKey: Guid(10aad598b94620b4ebbde3bac717ebb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animated Trees Package/Textures/sycamore_leaves_2_normal.png using Guid(10aad598b94620b4ebbde3bac717ebb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '9d188505e1b4c9d2ba009efdac65806b') in 0.005806 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000219 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant01.png
-  artifactKey: Guid(db54c5929786c5d4db41fce12fa0db00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor_Variant01.png using Guid(db54c5929786c5d4db41fce12fa0db00) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '2febf731ec496fe71a73f6a07571be00') in 0.008031 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000150 seconds.
-  path: Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor.png
-  artifactKey: Guid(7ddfd9f67202a4349808ac02b7fb92ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Stylized Brick Materials/Textures/Brick03/T_Brick03_baseColor.png using Guid(7ddfd9f67202a4349808ac02b7fb92ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
- -> (artifact id: '4ad5032e9359a824ccfa2cd72d0c3cdb') in 0.012151 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 0
 ========================================================================
 Received Prepare
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.278 seconds
+Thread 0x17fd47000 may have been prematurely finalized
+- Loaded All Assemblies, in  0.254 seconds
 Native extension for OSXStandalone target not found
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.680 seconds
-Domain Reload Profiling: 4961ms
-	BeginReloadAssembly (628ms)
+- Finished resetting the current domain, in  0.659 seconds
+Domain Reload Profiling: 913ms
+	BeginReloadAssembly (83ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (57ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (1ms)
-		CreateAndSetChildDomain (144ms)
-	RebuildCommonClasses (43ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (84ms)
-	LoadAllAssembliesAndSetupDomain (514ms)
-		LoadAssemblies (780ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (46ms)
-			TypeCache.Refresh (28ms)
-				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (18ms)
-	FinalizeReload (3683ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (2426ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (55ms)
-			SetLoadedEditorAssemblies (12ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (165ms)
-			ProcessInitializeOnLoadAttributes (2049ms)
-			ProcessInitializeOnLoadMethodAttributes (138ms)
-			AfterProcessingInitializeOnLoad (4ms)
-			EditorAssembliesLoaded (2ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (16ms)
-Refreshing native plugins compatible for Editor in 7.94 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4022 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 18 unused Assets / (158.4 KB). Loaded Objects now: 4558.
-Memory consumption went from 156.1 MB to 156.0 MB.
-Total: 21.404792 ms (FindLiveObjects: 0.869958 ms CreateObjectMapping: 0.285209 ms MarkObjects: 19.638708 ms  DeleteObjects: 0.608792 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
-  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Caller must complete domain reload
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.172 seconds
-Native extension for OSXStandalone target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.374 seconds
-Domain Reload Profiling: 4551ms
-	BeginReloadAssembly (569ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (41ms)
+		DisableScriptedObjects (2ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (138ms)
-	RebuildCommonClasses (31ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (77ms)
-	LoadAllAssembliesAndSetupDomain (488ms)
-		LoadAssemblies (756ms)
+		CreateAndSetChildDomain (32ms)
+	RebuildCommonClasses (19ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (13ms)
+	LoadAllAssembliesAndSetupDomain (132ms)
+		LoadAssemblies (128ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (27ms)
+		AnalyzeDomain (30ms)
 			TypeCache.Refresh (12ms)
 				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (14ms)
-	FinalizeReload (3376ms)
+			ScanForSourceGeneratedMonoScriptInfo (12ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (659ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (2314ms)
+		SetupLoadedEditorAssemblies (238ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (26ms)
-			SetLoadedEditorAssemblies (11ms)
+			InitializePlatformSupportModulesInManaged (2ms)
+			SetLoadedEditorAssemblies (2ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (201ms)
-			ProcessInitializeOnLoadAttributes (1971ms)
-			ProcessInitializeOnLoadMethodAttributes (104ms)
-			AfterProcessingInitializeOnLoad (1ms)
+			BeforeProcessingInitializeOnLoad (26ms)
+			ProcessInitializeOnLoadAttributes (200ms)
+			ProcessInitializeOnLoadMethodAttributes (9ms)
+			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (11ms)
-Refreshing native plugins compatible for Editor in 7.91 ms, found 2 plugins.
+		AwakeInstancesAfterBackupRestoration (2ms)
+Refreshing native plugins compatible for Editor in 0.74 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4023 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 18 unused Assets / (174.6 KB). Loaded Objects now: 4573.
-Memory consumption went from 161.4 MB to 161.2 MB.
-Total: 27.684750 ms (FindLiveObjects: 1.169750 ms CreateObjectMapping: 0.076250 ms MarkObjects: 25.286375 ms  DeleteObjects: 1.151042 ms)
+Unloading 4022 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 18 unused Assets / (166.4 KB). Loaded Objects now: 4547.
+Memory consumption went from 155.5 MB to 155.3 MB.
+Total: 2.343584 ms (FindLiveObjects: 0.150958 ms CreateObjectMapping: 0.041916 ms MarkObjects: 2.065167 ms  DeleteObjects: 0.084542 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
@@ -659,3 +262,12 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 13.105934 seconds.
+  path: Assets/Scripts/ScoreUpdater.cs
+  artifactKey: Guid(b88ad3b2e5a3eb148b58238cac63b66e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ScoreUpdater.cs using Guid(b88ad3b2e5a3eb148b58238cac63b66e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '57ef12c7c5af85278ff2e3ce863dbe67') in 0.000839 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0

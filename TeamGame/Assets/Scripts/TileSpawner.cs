@@ -1,120 +1,154 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // For UI elements
+using TMPro;
 
-namespace TempleRun {
 
-public class TileSpawner : MonoBehaviour
+namespace TempleRun
 {
-    [SerializeField] private GameObject startingTile;
-    [SerializeField] private List<GameObject> turnTiles;
-    [SerializeField] private List<GameObject> obstacles;
-    [SerializeField] private int tileStartCount = 10;
-    [SerializeField] private int minimumStraightTiles = 3;
-    [SerializeField] private int maximumStraightTiles = 15;
+    public class TileSpawner : MonoBehaviour
+    {
+        [SerializeField] private GameObject startingTile;
+        [SerializeField] private List<GameObject> turnTiles;
+        [SerializeField] private List<GameObject> obstacles;
+        [SerializeField] private TextMeshProUGUI turnAnnouncementText; // Reference to the UI Text for announcements
+        [SerializeField] private float announcementDuration = 2f; // Duration to show the announcement
+        [SerializeField] private int tileStartCount = 10;
+        [SerializeField] private int minimumStraightTiles = 3;
+        [SerializeField] private int maximumStraightTiles = 15;
 
-    private Vector3 currentTileLocation = Vector3.zero;
-    private Vector3 currentTileDirection = Vector3.forward;
-    private GameObject prevTile;
+        [SerializeField] private float minimumObstacleDistance = 20f;
+        [SerializeField] private float startingObstacleProbability = 0.2f;
+        [SerializeField] private float maxObstacleProbability = 0.6f;
+        [SerializeField] private int tilesToMaxProbability = 50;
 
-    private List<GameObject> currentTiles;
-    private List<GameObject> currentObstacles;
+        private Vector3 lastObstacleLocation = Vector3.negativeInfinity;
+        private Vector3 currentTileLocation = Vector3.zero;
+        private Vector3 currentTileDirection = Vector3.forward;
+        private GameObject prevTile;
 
-    private void Start() {
-        currentTiles = new List<GameObject>();
-        currentObstacles = new List<GameObject>();
+        private List<GameObject> currentTiles;
+        private List<GameObject> currentObstacles;
 
-        // In order for tiles to be chosen at random, use this function in order to choose random starting number
-        Random.InitState(System.DateTime.Now.Millisecond);
+        private int tilesSpawned = 0;
 
-        // Spawns the first straight tiles of the game
-        for (int i = 0; i < tileStartCount; i++) {
-            SpawnTile(startingTile.GetComponent<Tile>());
+        private void Start()
+        {
+            currentTiles = new List<GameObject>();
+            currentObstacles = new List<GameObject>();
+
+            Random.InitState(System.DateTime.Now.Millisecond);
+
+            for (int i = 0; i < tileStartCount; i++)
+            {
+                SpawnTile(startingTile.GetComponent<Tile>());
+            }
+
+            SpawnTile(SelectRandomGameObjectFromList(turnTiles).GetComponent<Tile>());
         }
 
-        // Spawns a randomly selected turn object
-        SpawnTile(SelectRandomGameObjectFromList(turnTiles).GetComponent<Tile>());
-    }
-
-    // Spawns tile at location in direction currently facing towards
-    private void SpawnTile(Tile tile, bool spawnObstacle = false) {
-        // Rotate tile based on direction of current tile
-        // Ensures that turn tiles are not overlapping with the straight tiles
+        private void SpawnTile(Tile tile, bool spawnObstacle = false)
+        {
         Quaternion newTileRotation = tile.gameObject.transform.rotation * Quaternion.LookRotation(currentTileDirection, Vector3.up);
 
-        prevTile = GameObject.Instantiate(tile.gameObject, currentTileLocation, newTileRotation);
+        prevTile = Instantiate(tile.gameObject, currentTileLocation, newTileRotation);
         currentTiles.Add(prevTile);
 
-        if (spawnObstacle) SpawnObstacle();
+        if (tile.type == TileType.LEFT || tile.type == TileType.RIGHT)
+        {
+        // Calculate delay based on the number of tiles spawned
+            float dynamicDelay = Mathf.Clamp(tilesSpawned * 0.4f, 0f, 4f); // Adjust multiplier and max delay as needed
+            string turnDirection = tile.type == TileType.LEFT ? "Turn Left" : "Turn Right";
+            StartCoroutine(ShowTurnAnnouncement(turnDirection, dynamicDelay));
+        }
 
-        if (tile.type == TileType.STRAIGHT) {
+        if (spawnObstacle)
+        {
+            float obstacleProbability = Mathf.Lerp(startingObstacleProbability, maxObstacleProbability, (float)tilesSpawned / tilesToMaxProbability);
+            if (Random.value <= obstacleProbability)
+            {
+                SpawnObstacle();
+            }
+        }
+
+        if (tile.type == TileType.STRAIGHT)
+        {
             currentTileLocation += Vector3.Scale(prevTile.GetComponent<Renderer>().bounds.size, currentTileDirection);
         }
 
-    }
-
-    // Spawn new tiles after the player turns
-    public void AddNewDirection(Vector3 direction) {
-        currentTileDirection = direction;
-        DeletePreviousTiles();
-
-        // Determine what the previous turn tile was
-        Vector3 tilePlacementScale;
-        if (prevTile.GetComponent<Tile>().type == TileType.SIDEWAYS) {
-            tilePlacementScale = Vector3.Scale(prevTile.GetComponent<Renderer>().bounds.size / 2 + (Vector3.one * startingTile.GetComponent<BoxCollider>().size.z / 2), 
-                currentTileDirection);
-        }
-        else {
-            tilePlacementScale = Vector3.Scale((prevTile.GetComponent<Renderer>().bounds.size - (Vector3.one * 2)) + (Vector3.one * startingTile.GetComponent<BoxCollider>().size.z / 2), 
-                currentTileDirection);
-        }
-
-        currentTileLocation += tilePlacementScale;
-
-        int currentPathLength = Random.Range(minimumStraightTiles, maximumStraightTiles);
-        for (int i = 0; i < currentPathLength; i++) {
-            SpawnTile(startingTile.GetComponent<Tile>(), (i==0) ? false : true);
-        }
-
-        SpawnTile(SelectRandomGameObjectFromList(turnTiles).GetComponent<Tile>(), false);
-
-    }
-
-    // delete tiles once the player turns in order to save space and ensure game doesn't loop back to previous tiles
-    private void DeletePreviousTiles() {
-        // Removes all but the turn tile
-        while (currentTiles.Count != 1) {
-            GameObject tile = currentTiles[0];
-            currentTiles.RemoveAt(0);
-            Destroy(tile);
-        }
-
-        // Removes all obstacles
-        while (currentObstacles.Count != 0) {
-            GameObject obstacle = currentObstacles[0];
-            currentObstacles.RemoveAt(0);
-            Destroy(obstacle);
-        }
+        tilesSpawned++;
     }
 
 
-    // If the spawn obstacle is true in SpawnTile function, spawns an obstacle 20% of the time
-    private void SpawnObstacle() {
-        if (Random.value > .4f) return;
+       private IEnumerator ShowTurnAnnouncement(string message, float dynamicDelay)
+    {
+     
+            if (dynamicDelay > 0f)
+            {
+            yield return new WaitForSeconds(dynamicDelay); // Wait for the specified delay
+            }
 
-        GameObject obstaclePrefab = SelectRandomGameObjectFromList(obstacles);
-        Quaternion newObjectRotation = obstaclePrefab.gameObject.transform.rotation * Quaternion.LookRotation(currentTileDirection, Vector3.up);
-
-        GameObject obstacle = Instantiate(obstaclePrefab, currentTileLocation, newObjectRotation);
-        currentObstacles.Add(obstacle);
+            Debug.Log($"Showing announcement: {message}");
+            turnAnnouncementText.text = message;        // Set the message text
+            turnAnnouncementText.gameObject.SetActive(true); // Show the message
+            yield return new WaitForSeconds(announcementDuration); // Wait for the duration
+            turnAnnouncementText.gameObject.SetActive(false); // Hide the message
+       
     }
 
-    // Returns random tile; Returns null if there are no objects in list
-    private GameObject SelectRandomGameObjectFromList(List<GameObject> list) {
-        if (list.Count == 0) return null;
+        public void AddNewDirection(Vector3 direction)
+        {
+            currentTileDirection = direction;
+            DeletePreviousTiles();
 
-        return list[Random.Range(0, list.Count)];
+            currentTileLocation += Vector3.Scale(prevTile.GetComponent<Renderer>().bounds.size, currentTileDirection);
+
+            int currentPathLength = Random.Range(minimumStraightTiles, maximumStraightTiles);
+            for (int i = 0; i < currentPathLength; i++)
+            {
+                SpawnTile(startingTile.GetComponent<Tile>(), i > 0);
+            }
+
+            SpawnTile(SelectRandomGameObjectFromList(turnTiles).GetComponent<Tile>(), false);
+        }
+
+        private void DeletePreviousTiles()
+        {
+            while (currentTiles.Count > 1)
+            {
+                GameObject tile = currentTiles[0];
+                currentTiles.RemoveAt(0);
+                Destroy(tile);
+            }
+
+            while (currentObstacles.Count > 0)
+            {
+                GameObject obstacle = currentObstacles[0];
+                currentObstacles.RemoveAt(0);
+                Destroy(obstacle);
+            }
+        }
+
+        private void SpawnObstacle()
+        {
+            if (Vector3.Distance(currentTileLocation, lastObstacleLocation) < minimumObstacleDistance) return;
+
+            GameObject obstaclePrefab = SelectRandomGameObjectFromList(obstacles);
+            Quaternion newObjectRotation = obstaclePrefab.gameObject.transform.rotation * Quaternion.LookRotation(currentTileDirection, Vector3.up);
+
+            GameObject obstacle = Instantiate(obstaclePrefab, currentTileLocation, newObjectRotation);
+            currentObstacles.Add(obstacle);
+
+            lastObstacleLocation = currentTileLocation;
+        }
+
+        private GameObject SelectRandomGameObjectFromList(List<GameObject> list)
+        {
+            if (list.Count == 0) return null;
+            return list[Random.Range(0, list.Count)];
+        }
     }
-    
 }
-}
+
+
