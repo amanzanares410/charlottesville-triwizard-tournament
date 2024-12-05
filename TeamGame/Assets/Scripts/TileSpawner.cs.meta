@@ -7,6 +7,7 @@ MonoImporter:
   - startingTile: {instanceID: 0}
   - tileAssociatedPrefab: {fileID: 919132149155446097, guid: d03e7c077e1034cf784b9c2305c2bcd7, type: 3}
   - secondaryPrefab: {fileID: 919132149155446097, guid: 52268a7c58d25417386014bd95f59482, type: 3}
+  - arenaPrefab: {fileID: 919132149155446097, guid: 8a68c4c4ef2284ddb8747161094d4f36, type: 3}
   - turnAnnouncementText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}

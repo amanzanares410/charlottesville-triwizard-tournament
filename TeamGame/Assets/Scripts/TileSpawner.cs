@@ -13,6 +13,7 @@ namespace TempleRun
         [SerializeField] private List<GameObject> obstacles;
         [SerializeField] private GameObject tileAssociatedPrefab; // Prefab for the rotunda
         [SerializeField] private GameObject secondaryPrefab; // Prefab for the dorm
+        //[SerializeField] private GameObject arenaPrefab;
         [SerializeField] private TextMeshProUGUI turnAnnouncementText; // Reference to the UI Text for announcements
         [SerializeField] private float announcementDuration = 2f; // Duration to show the announcement
         [SerializeField] private int tileStartCount = 10;
@@ -79,8 +80,26 @@ namespace TempleRun
                     secondaryPrefab.SetActive(true);
                     dorm.transform.parent = prevTile.transform; // Optional: Parent it to the tile for organization
                     currentTileObjects.Add(dorm);
+                    
                 }
+
             }
+/*
+            if (tilesSpawned >= 15 && (tilesSpawned - 15) % 30 == 0) {
+                Vector3 spawnOffsetArena = 17 * Vector3.Cross(currentTileDirection, Vector3.up).normalized; // Offset to the right
+                if (arenaPrefab != null)
+                {
+                    Quaternion arenaRotation = Quaternion.LookRotation(-currentTileDirection, Vector3.up) * Quaternion.Euler(0, 70, 0); // Rotate by 45 degrees
+                    GameObject arena = Instantiate(arenaPrefab, currentTileLocation + spawnOffsetArena, arenaRotation);
+                    arenaPrefab.SetActive(true);
+                    arena.transform.parent = prevTile.transform; // Optional: Parent it to the tile for organization
+                    currentTileObjects.Add(arena);
+                }
+                else
+{
+    Debug.LogWarning("Arena prefab is null.");
+} 
+            }*/
 
             if (tile.type == TileType.LEFT || tile.type == TileType.RIGHT)
             {
