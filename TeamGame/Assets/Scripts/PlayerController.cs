@@ -49,8 +49,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UnityEvent<int> gameOverEvent;
     [SerializeField] private UnityEvent<int> scoreUpdateEvent;
 
+        private bool isStopped = false;
 
-    private void Awake() {
+
+        private void Awake() {
         playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
         slidingAnimationId = Animator.StringToHash("Sliding");
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Start() {
+            isStopped = false;
         playerSpeed = initialPlayerSpeed;
         gravity = initialGravityValue;
         //if (selectionData.selectedCharacterSprite != null)
@@ -185,7 +188,17 @@ public class PlayerController : MonoBehaviour
             sfxSource.PlayOneShot(clip);
     }
 
+        public void StopPlayer()
+        {
+            isStopped = true;
+            gameObject.SetActive(false);
+            runningAudio.Stop();
+            sfxSource.Stop();
+        }
+
     private void Update() {
+            if (isStopped) return;
+
         if (!controller.enabled)
         {
         Debug.LogWarning("CharacterController was disabled, enabling now.");
