@@ -162,6 +162,8 @@ namespace TempleRun
                 GameObject tile = currentTiles[0];
                 currentTiles.RemoveAt(0);
                 Destroy(tile);
+                //tileAssociatedPrefab.SetActive(false);
+                //secondaryPrefab.SetActive(false);
             }
 
             while (currentTileObjects.Count > 0)
