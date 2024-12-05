@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private AnimationClip slideAnimationClip;
     [SerializeField] private AnimationClip runAnimationClip;
+    [SerializeField] private AnimationClip jumpAnimationClip;
     [SerializeField] private Animator animator;
     [SerializeField] private float scoreMultiplier = 10f;
 
@@ -151,25 +152,32 @@ public class PlayerController : MonoBehaviour
         newControllerCenter.y -= controller.height / 2;
         controller.center = newControllerCenter;
         // Play the sliding animation
-        animator.Play("slidingAnimation", 0);
+        //animator.Play("slidingAnimation", 0);
+        animator.SetBool("isSliding", true);
         yield return new WaitForSeconds(slideAnimationClip.length / animator.speed);
+        animator.SetBool("isSliding", false);
         // Set the character controller collider back to normal after sliding.
         controller.height *= 2;
         controller.center = originalControllerCenter;
         sliding = false;
     }
 
-private void PlayerJump(InputAction.CallbackContext context)
-{
-   if(IsGrounded()){
-        PlaySound(jumpAudio);
-        playerVelocity.y += Mathf.Sqrt(jumpHeight * gravity * -2f);
-        controller.Move(playerVelocity * Time.deltaTime);
+    private void PlayerJump(InputAction.CallbackContext context)
+    {
+    if(IsGrounded()){
+            PlaySound(jumpAudio);
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * gravity * -2f);
+            controller.Move(playerVelocity * Time.deltaTime);
+            StartCoroutine(Jump());
+        }
+        
     }
-    
-}
 
-    
+    private IEnumerator Jump() {
+        animator.SetBool("isJumping", true);
+        yield return new WaitForSeconds(jumpAnimationClip.length / animator.speed);
+        animator.SetBool("isJumping", false);
+    }
 
     private void PlaySound(AudioClip clip)
     {
