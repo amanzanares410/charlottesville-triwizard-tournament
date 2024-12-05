@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI; // For UI elements
 using TMPro;
 
-
 namespace TempleRun
 {
     public class TileSpawner : MonoBehaviour
@@ -12,14 +11,16 @@ namespace TempleRun
         [SerializeField] private GameObject startingTile;
         [SerializeField] private List<GameObject> turnTiles;
         [SerializeField] private List<GameObject> obstacles;
+        [SerializeField] private GameObject tileAssociatedPrefab; // Prefab for the rotunda
+        [SerializeField] private GameObject secondaryPrefab; // Prefab for the dorm
         [SerializeField] private TextMeshProUGUI turnAnnouncementText; // Reference to the UI Text for announcements
         [SerializeField] private float announcementDuration = 2f; // Duration to show the announcement
         [SerializeField] private int tileStartCount = 10;
         [SerializeField] private int minimumStraightTiles = 3;
         [SerializeField] private int maximumStraightTiles = 15;
 
-        [SerializeField] private float minimumObstacleDistance = 20f;
-        [SerializeField] private float startingObstacleProbability = 0.2f;
+        [SerializeField] private float minimumObstacleDistance = 15f;
+        [SerializeField] private float startingObstacleProbability = 0.3f;
         [SerializeField] private float maxObstacleProbability = 0.6f;
         [SerializeField] private int tilesToMaxProbability = 50;
 
@@ -30,6 +31,7 @@ namespace TempleRun
 
         private List<GameObject> currentTiles;
         private List<GameObject> currentObstacles;
+        private List<GameObject> currentTileObjects; // List to track associated game objects
 
         private int tilesSpawned = 0;
 
@@ -37,6 +39,7 @@ namespace TempleRun
         {
             currentTiles = new List<GameObject>();
             currentObstacles = new List<GameObject>();
+            currentTileObjects = new List<GameObject>();
 
             Random.InitState(System.DateTime.Now.Millisecond);
 
@@ -50,43 +53,64 @@ namespace TempleRun
 
         private void SpawnTile(Tile tile, bool spawnObstacle = false)
         {
-        Quaternion newTileRotation = tile.gameObject.transform.rotation * Quaternion.LookRotation(currentTileDirection, Vector3.up);
+            Quaternion newTileRotation = tile.gameObject.transform.rotation * Quaternion.LookRotation(currentTileDirection, Vector3.up);
 
-        prevTile = Instantiate(tile.gameObject, currentTileLocation, newTileRotation);
-        currentTiles.Add(prevTile);
+            prevTile = Instantiate(tile.gameObject, currentTileLocation, newTileRotation);
+            currentTiles.Add(prevTile);
 
-        if (tile.type == TileType.LEFT || tile.type == TileType.RIGHT)
-        {
-        // Calculate delay based on the number of tiles spawned
-            float dynamicDelay = Mathf.Clamp(tilesSpawned * 0.4f, 0f, 4f); // Adjust multiplier and max delay as needed
-            string turnDirection = tile.type == TileType.LEFT ? "Turn Left" : "Turn Right";
-            StartCoroutine(ShowTurnAnnouncement(turnDirection, dynamicDelay));
-        }
-
-        if (spawnObstacle)
-        {
-            float obstacleProbability = Mathf.Lerp(startingObstacleProbability, maxObstacleProbability, (float)tilesSpawned / tilesToMaxProbability);
-            if (Random.value <= obstacleProbability)
+            // Spawn associated game objects (rotunda and dorm) without overlapping
+            if (tilesSpawned >= 10 && (tilesSpawned - 10) % 20 == 0)
             {
-                SpawnObstacle();
+                Vector3 spawnOffsetRotunda = -16 * Vector3.Cross(currentTileDirection, Vector3.up).normalized; // Offset to the left
+                Vector3 spawnOffsetDorm = 17 * Vector3.Cross(currentTileDirection, Vector3.up).normalized; // Offset to the right
+
+                if (tileAssociatedPrefab != null)
+                {
+                    GameObject rotunda = Instantiate(tileAssociatedPrefab, currentTileLocation + spawnOffsetRotunda, newTileRotation);
+                    tileAssociatedPrefab.SetActive(true);
+                    rotunda.transform.parent = prevTile.transform; // Optional: Parent it to the tile for organization
+                    currentTileObjects.Add(rotunda);
+                }
+
+                if (secondaryPrefab != null)
+                {
+                    Quaternion dormRotation = Quaternion.LookRotation(-currentTileDirection, Vector3.up) * Quaternion.Euler(0, 70, 0); // Rotate by 45 degrees
+                    GameObject dorm = Instantiate(secondaryPrefab, currentTileLocation + spawnOffsetDorm, dormRotation);
+                    secondaryPrefab.SetActive(true);
+                    dorm.transform.parent = prevTile.transform; // Optional: Parent it to the tile for organization
+                    currentTileObjects.Add(dorm);
+                }
             }
+
+            if (tile.type == TileType.LEFT || tile.type == TileType.RIGHT)
+            {
+                float dynamicDelay = Mathf.Clamp(tilesSpawned * 0.4f, 0f, 4f);
+                string turnDirection = tile.type == TileType.LEFT ? "Turn Left" : "Turn Right";
+                StartCoroutine(ShowTurnAnnouncement(turnDirection, dynamicDelay));
+            }
+
+            if (spawnObstacle)
+            {
+                float obstacleProbability = Mathf.Lerp(startingObstacleProbability, maxObstacleProbability, (float)tilesSpawned / tilesToMaxProbability);
+                if (Random.value <= obstacleProbability)
+                {
+                    SpawnObstacle();
+                }
+            }
+
+            if (tile.type == TileType.STRAIGHT)
+            {
+                currentTileLocation += Vector3.Scale(prevTile.GetComponent<Renderer>().bounds.size, currentTileDirection);
+            }
+
+            tilesSpawned++;
         }
 
-        if (tile.type == TileType.STRAIGHT)
+        private IEnumerator ShowTurnAnnouncement(string message, float dynamicDelay)
         {
-            currentTileLocation += Vector3.Scale(prevTile.GetComponent<Renderer>().bounds.size, currentTileDirection);
-        }
-
-        tilesSpawned++;
-    }
-
-
-       private IEnumerator ShowTurnAnnouncement(string message, float dynamicDelay)
-    {
-     
             if (dynamicDelay > 0f)
             {
-            yield return new WaitForSeconds(dynamicDelay); // Wait for the specified delay
+                yield return new WaitForSeconds(dynamicDelay); // Wait for the specified delay
             }
 
             Debug.Log($"Showing announcement: {message}");
@@ -94,8 +118,7 @@ namespace TempleRun
             turnAnnouncementText.gameObject.SetActive(true); // Show the message
             yield return new WaitForSeconds(announcementDuration); // Wait for the duration
             turnAnnouncementText.gameObject.SetActive(false); // Hide the message
-       
-    }
+        }
 
         public void AddNewDirection(Vector3 direction)
         {
@@ -120,6 +143,13 @@ namespace TempleRun
                 GameObject tile = currentTiles[0];
                 currentTiles.RemoveAt(0);
                 Destroy(tile);
+            }
+
+            while (currentTileObjects.Count > 0)
+            {
+                GameObject tileObject = currentTileObjects[0];
+                currentTileObjects.RemoveAt(0);
+                Destroy(tileObject);
             }
 
             while (currentObstacles.Count > 0)
@@ -150,5 +180,3 @@ namespace TempleRun
         }
     }
 }
-
-

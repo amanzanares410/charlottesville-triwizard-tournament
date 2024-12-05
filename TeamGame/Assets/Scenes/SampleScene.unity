@@ -472,7 +472,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalPosition.y
@@ -484,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9396927
+      value: 0.2588191
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalRotation.x
@@ -492,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.3420201
+      value: -0.9659258
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalRotation.z
@@ -504,7 +504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -40
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52268a7c58d25417386014bd95f59482, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -514,11 +514,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: dorm copy 2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52268a7c58d25417386014bd95f59482, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52268a7c58d25417386014bd95f59482, type: 3}
+--- !u!1 &544303022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d03e7c077e1034cf784b9c2305c2bcd7, type: 3}
+  m_PrefabInstance: {fileID: 816392060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &632140336
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +898,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d03e7c077e1034cf784b9c2305c2bcd7, type: 3}
       propertyPath: m_Name
       value: rotunda
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d03e7c077e1034cf784b9c2305c2bcd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1868,13 +1881,15 @@ MonoBehaviour:
   obstacles:
   - {fileID: 7602181854675208719, guid: 155f450bb33de2c4f96d377dba80b194, type: 3}
   - {fileID: 1887772381221813489, guid: 7acef6c3f1b5d6f45b162045d394132f, type: 3}
+  tileAssociatedPrefab: {fileID: 544303022}
+  secondaryPrefab: {fileID: 2007633241}
   turnAnnouncementText: {fileID: 1484496182}
   announcementDuration: 1
   tileStartCount: 10
   minimumStraightTiles: 3
   maximumStraightTiles: 15
-  minimumObstacleDistance: 20
-  startingObstacleProbability: 0.2
+  minimumObstacleDistance: 15
+  startingObstacleProbability: 0.3
   maxObstacleProbability: 0.6
   tilesToMaxProbability: 50
 --- !u!4 &1399490013
@@ -1991,13 +2006,15 @@ MonoBehaviour:
   startingTile: {fileID: 0}
   turnTiles: []
   obstacles: []
+  tileAssociatedPrefab: {fileID: 0}
+  secondaryPrefab: {fileID: 0}
   turnAnnouncementText: {fileID: 1484496182}
   announcementDuration: 6
   tileStartCount: 10
   minimumStraightTiles: 3
   maximumStraightTiles: 15
-  minimumObstacleDistance: 20
-  startingObstacleProbability: 0.2
+  minimumObstacleDistance: 15
+  startingObstacleProbability: 0.3
   maxObstacleProbability: 0.6
   tilesToMaxProbability: 50
 --- !u!114 &1484496181
@@ -2015,7 +2032,9 @@ MonoBehaviour:
   startingTile: {fileID: 0}
   turnTiles: []
   obstacles: []
-  turnAnnouncementText: {fileID: 0}
+  tileAssociatedPrefab: {fileID: 544303022}
+  secondaryPrefab: {fileID: 2007633241}
+  turnAnnouncementText: {fileID: 1484496182}
   announcementDuration: 1
   tileStartCount: 10
   minimumStraightTiles: 3
@@ -2778,6 +2797,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998615845}
   m_CullTransparentMesh: 1
+--- !u!1 &2007633241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 52268a7c58d25417386014bd95f59482, type: 3}
+  m_PrefabInstance: {fileID: 496101023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2036968316
 GameObject:
   m_ObjectHideFlags: 0
