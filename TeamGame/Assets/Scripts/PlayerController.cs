@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterSelectionData selectionData;
     //[SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private float initialPlayerSpeed = 4f;
-    [SerializeField] private float maximumPlayerSpeed = 25f;
+    [SerializeField] private float maximumPlayerSpeed = 20f;
     [SerializeField] private float playerSpeedIncrease = .05f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float initialGravityValue = -9.81f;

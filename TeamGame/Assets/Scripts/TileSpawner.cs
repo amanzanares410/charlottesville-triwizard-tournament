@@ -104,7 +104,7 @@ namespace TempleRun
             if (tile.type == TileType.LEFT || tile.type == TileType.RIGHT)
             {
                 float dynamicDelay = Mathf.Clamp(tilesSpawned * 0.4f, 0f, 4f);
-                string turnDirection = tile.type == TileType.LEFT ? "Turn Left" : "Turn Right";
+                string turnDirection = tile.type == TileType.LEFT ? "Left Turn Coming" : "Right Turn Coming";
                 StartCoroutine(ShowTurnAnnouncement(turnDirection, dynamicDelay));
             }
 
