@@ -63,7 +63,7 @@ namespace TempleRun
             {
                 Vector3 spawnOffsetRotunda = -16 * Vector3.Cross(currentTileDirection, Vector3.up).normalized; // Offset to the left
                 Vector3 spawnOffsetDorm = 17 * Vector3.Cross(currentTileDirection, Vector3.up).normalized; // Offset to the right
-
+                
                 if (tileAssociatedPrefab != null)
                 {
                     GameObject rotunda = Instantiate(tileAssociatedPrefab, currentTileLocation + spawnOffsetRotunda, newTileRotation);
