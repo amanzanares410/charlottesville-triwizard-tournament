@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private float initialPlayerSpeed = 4f;
     [SerializeField] private float maximumPlayerSpeed = 20f;
-    [SerializeField] private float playerSpeedIncrease = .05f;
-    [SerializeField] private float jumpHeight = 1.0f;
+    [SerializeField] private float playerSpeedIncrease = .12f;
+    [SerializeField] private float jumpHeight = 1.3f;
     [SerializeField] private float initialGravityValue = -9.81f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask turnLayer;
@@ -274,13 +274,26 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+
+        
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+    // Check if the collision is with an obstacle
+        if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0)
         {
-            if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0)
+        // Ensure the collision is significant enough (e.g., a direct hit)
+            if (Vector3.Dot(hit.normal, Vector3.up) < 0.5f) // Example: Ignore glancing collisions
             {
-                GameOver();
+                Debug.Log("Forgiving minor collision with obstacle.");
+                return; // Do not trigger game over for less direct collisions
             }
+
+            // Trigger Game Over for significant collisions
+            Debug.Log("Significant collision with obstacle.");
+            GameOver();
         }
+    }
     }
 }
 

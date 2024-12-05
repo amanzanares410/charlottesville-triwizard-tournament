@@ -70,7 +70,8 @@ namespace TempleRun
                     GameObject rotunda = Instantiate(tileAssociatedPrefab, currentTileLocation + spawnOffsetRotunda, newTileRotation);
                     tileAssociatedPrefab.SetActive(true);
                     rotunda.transform.parent = prevTile.transform; // Optional: Parent it to the tile for organization
-                    currentTileObjects.Add(rotunda);
+                    currentTileObjects.Add(rotunda); 
+                  
                 }
 
                 if (secondaryPrefab != null)
@@ -80,26 +81,11 @@ namespace TempleRun
                     secondaryPrefab.SetActive(true);
                     dorm.transform.parent = prevTile.transform; // Optional: Parent it to the tile for organization
                     currentTileObjects.Add(dorm);
-                    
+         
                 }
 
             }
-/*
-            if (tilesSpawned >= 15 && (tilesSpawned - 15) % 30 == 0) {
-                Vector3 spawnOffsetArena = 17 * Vector3.Cross(currentTileDirection, Vector3.up).normalized; // Offset to the right
-                if (arenaPrefab != null)
-                {
-                    Quaternion arenaRotation = Quaternion.LookRotation(-currentTileDirection, Vector3.up) * Quaternion.Euler(0, 70, 0); // Rotate by 45 degrees
-                    GameObject arena = Instantiate(arenaPrefab, currentTileLocation + spawnOffsetArena, arenaRotation);
-                    arenaPrefab.SetActive(true);
-                    arena.transform.parent = prevTile.transform; // Optional: Parent it to the tile for organization
-                    currentTileObjects.Add(arena);
-                }
-                else
-{
-    Debug.LogWarning("Arena prefab is null.");
-} 
-            }*/
+
 
             if (tile.type == TileType.LEFT || tile.type == TileType.RIGHT)
             {
@@ -162,8 +148,7 @@ namespace TempleRun
                 GameObject tile = currentTiles[0];
                 currentTiles.RemoveAt(0);
                 Destroy(tile);
-                //tileAssociatedPrefab.SetActive(false);
-                //secondaryPrefab.SetActive(false);
+                
             }
 
             while (currentTileObjects.Count > 0)

@@ -2021,7 +2021,7 @@ MonoBehaviour:
   selectionData: {fileID: 11400000, guid: 7a0e80c1527184c799c0e78c1c1d23d7, type: 2}
   initialPlayerSpeed: 10
   maximumPlayerSpeed: 20
-  playerSpeedIncrease: 0.1
+  playerSpeedIncrease: 0.12
   jumpHeight: 1.3
   initialGravityValue: -9.81
   groundLayer:
