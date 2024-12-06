@@ -372,6 +372,7 @@
 "Assets/Scripts/GameOver.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/ScoreUpdater.cs"
+"Assets/Scripts/ShirtChanger.cs"
 "Assets/Scripts/TileSpawner.cs"
 "Assets/Scripts/WelcomeScreenManager.cs"
 "Assets/TempleRunPrefabs/Tile.cs"

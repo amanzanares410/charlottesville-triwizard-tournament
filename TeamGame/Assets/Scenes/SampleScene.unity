@@ -899,6 +899,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d03e7c077e1034cf784b9c2305c2bcd7, type: 3}
   m_PrefabInstance: {fileID: 816392060}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &622554094 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7956919756574189296, guid: cc2cccaf13fc8478884b711a92cdae37, type: 3}
+  m_PrefabInstance: {fileID: 1937545653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &632140336
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,8 +3217,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -86660355763864230, guid: cc2cccaf13fc8478884b711a92cdae37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1937545655}
   m_SourcePrefab: {fileID: 100100000, guid: cc2cccaf13fc8478884b711a92cdae37, type: 3}
+--- !u!1 &1937545654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -86660355763864230, guid: cc2cccaf13fc8478884b711a92cdae37, type: 3}
+  m_PrefabInstance: {fileID: 1937545653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1937545655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937545654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121db54dffc284310ab044dadb9b2880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSelectionData: {fileID: 11400000, guid: 7a0e80c1527184c799c0e78c1c1d23d7, type: 2}
+  skinnedMeshRenderer: {fileID: 1937545657}
+  pantsRenderer: {fileID: 622554094}
+  engMaterial: {fileID: 2100000, guid: f02357ed1630f446282ecaa03873c214, type: 2}
+  commMaterial: {fileID: 2100000, guid: 04672886dc18e4b45875aa55773fd174, type: 2}
+  nurseMaterial: {fileID: 2100000, guid: ce3b9b1ebce0443f59fb0ebdcc0d0d2d, type: 2}
+  artsMaterial: {fileID: 2100000, guid: 3f967125be16144eb89b89a95cdd04c0, type: 2}
+--- !u!137 &1937545657 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5433269313094510252, guid: cc2cccaf13fc8478884b711a92cdae37, type: 3}
+  m_PrefabInstance: {fileID: 1937545653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998615845
 GameObject:
   m_ObjectHideFlags: 0

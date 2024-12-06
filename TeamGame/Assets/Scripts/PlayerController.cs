@@ -283,11 +283,11 @@ public class PlayerController : MonoBehaviour
         if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0)
         {
         // Ensure the collision is significant enough (e.g., a direct hit)
-            if (Vector3.Dot(hit.normal, Vector3.up) < 0.5f) // Example: Ignore glancing collisions
-            {
-                Debug.Log("Forgiving minor collision with obstacle.");
-                return; // Do not trigger game over for less direct collisions
-            }
+            // if (Vector3.Dot(hit.normal, Vector3.up) < 0.5f) // Example: Ignore glancing collisions
+            // {
+            //     Debug.Log("Forgiving minor collision with obstacle.");
+            //     return; // Do not trigger game over for less direct collisions
+            // }
 
             // Trigger Game Over for significant collisions
             Debug.Log("Significant collision with obstacle.");
